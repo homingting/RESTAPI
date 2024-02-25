@@ -1,9 +1,10 @@
 from db import db
 
-class StoremModel(db.Model):
+class StoreModel(db.Model):
     __tablename__= "stores"
     
-    id = db.Column(db.Intger,primary_key = True)
+    id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(80),unique = True , nullable = False)
-    items = db.relationship("ItemModel",back_populates ="store",lazy = "dynamic")
+    #casecade = "all, delete" 若是store被刪除，則裡面的items也會一起跟著消失
+    items = db.relationship("ItemModel",back_populates ="store",lazy = "dynamic", cascade = "all, delete")
     
