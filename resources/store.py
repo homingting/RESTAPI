@@ -24,19 +24,19 @@ class Store(MethodView):
             
 @blp.route("/store")
 class storeslist(MethodView):
-    @blp.response(201,StoreSchema(many=True))
+    @blp.response(200,StoreSchema(many=True))
     def get(self):
         return StoreModel.query.all()
     
     @blp.arguments(StoreSchema)
-    @blp.response(200,StoreSchema)
+    @blp.response(201,StoreSchema)
     def post(self,store_data):   
         store = StoreModel(**store_data)
         try:
             db.session.add(store)
             db.session.commit()
         except IntegrityError:
-            abort(400,message="A store with that name already exists.",)
+            abort(400,message="A store with that name already exists.")
         except SQLAlchemyError:
-            abort(500, message="An error occurred creating the store.",)
+            abort(500, message="An error occurred creating the store.")
         return store

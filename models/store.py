@@ -7,4 +7,5 @@ class StoreModel(db.Model):
     name = db.Column(db.String(80),unique = True , nullable = False)
     #casecade = "all, delete" 若是store被刪除，則裡面的items也會一起跟著消失
     items = db.relationship("ItemModel",back_populates ="store",lazy = "dynamic", cascade = "all, delete")
+    tags = db.relationship('TagModel', back_populates='store',lazy = "dynamic")
     

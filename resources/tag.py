@@ -27,7 +27,7 @@ class TagInStore(MethodView):
             db.session.add(tag)
             db.session.commit()
         except SQLAlchemyError as e:
-            abort(500,message=str(e),)
+            abort(500,message=str(e))
         
         return tag
     

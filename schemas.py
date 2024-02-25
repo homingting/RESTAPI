@@ -2,8 +2,8 @@ from marshmallow import Schema, fields
 
 
 class PlainItemSchema(Schema):
-    id = fields.Int(dump_only=True)
-    name = fields.Str(required=True)
+    id = fields.Int(dump_only=True) #dump_only =>序列化(物件轉json or dict 時，例如輸出)時才用
+    name = fields.Str(required=True) #反序列化時必定要有
     price = fields.Float(required=True)
 
 
